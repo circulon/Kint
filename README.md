@@ -7,26 +7,31 @@ http://raveren.github.com/kint/
 
 Requirements 
 
-  Tested on 1.1.8. Should work on earlier versions.
+  Tested on 1.1.12. Should work on earlier versions.
 
 Setup 
 
 Download and extract the folder under protected/extensions.
 
-Add to your config (main.php) under components:
+Add to your config 
 ~~~
-'kint' => array(
-    'class' => 'ext.Kint.Kint',
-),
-~~~
-
-Add it to your preload property (this is only for declaring the shortcut functions):
-
-~~~
-'preload' => array('log', 'kint'),
+'components' => [
+   ...
+   'kint' => [
+       'class' => 'ext.Kint.Kint',
+   ],
+   ...
+]
 ~~~
 
-Note: You can still use the plugin without autoloading, but instead of using the shortcut functions, you have to use:
+To access the shortcut functions add it to the preload in your config
+
+~~~
+'preload' => ['kint'],
+~~~
+
+Note: You can still use the plugin without autoloading, but shortcut functions will no be available, 
+   instead use:
 ~~~
 Kint::dump($variable);
 ~~~
@@ -48,7 +53,7 @@ s($variable); // stands for "simple"
   sd($variable); // this will halt execution after displaying data
 ~~~  
 
-There are also (currently two) modifiers:
+There are also modifiers:
 ~~~
 +d($variable); // will dump variable information without limiting the depth
     /// and
